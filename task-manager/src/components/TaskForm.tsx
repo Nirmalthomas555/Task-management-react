@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTasks } from '../context/TaskContext';
+import './TaskForm.css'; 
 
 const TaskForm: React.FC = () => {
   const { addTask } = useTasks();
@@ -24,26 +25,35 @@ const TaskForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Task Title"
-        required
-      />
-      <textarea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        placeholder="Task Description"
-      />
-      <select value={priority} onChange={(e) => setPriority(e.target.value as 'Low' | 'Medium' | 'High')}>
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-      </select>
-      <button type="submit">Add Task</button>
-    </form>
+    <div className="form-container">
+  <form onSubmit={handleSubmit} className="task-form">
+    <input
+      type="text"
+      value={title}
+      onChange={(e) => setTitle(e.target.value)}
+      placeholder="Task Title"
+      required
+      className="task-input"
+    />
+    <textarea
+      value={description}
+      onChange={(e) => setDescription(e.target.value)}
+      placeholder="Task Description"
+      className="task-textarea"
+    />
+    <select
+      value={priority}
+      onChange={(e) => setPriority(e.target.value as 'Low' | 'Medium' | 'High')}
+      className="task-select"
+    >
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+    </select>
+    <button type="submit" className="task-button">Add Task</button>
+  </form>
+</div>
+
   );
 };
 
